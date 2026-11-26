@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masita Market - Tienda</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Montserrat,system-ui,-apple-system,sans-serif;background:#F4F8FD;color:#0A2A6B}
+header{background:#fff;border-bottom:4px solid #1E6FE0;padding:16px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+header img{height:70px}
+header .t{font-size:20px;font-weight:800}
+header .s{font-size:13px;color:#33415C}
+main{max-width:1180px;margin:0 auto;padding:24px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px}
+h2{font-size:20px;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{background:#fff;border:1px solid #D6E4F7;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.card img{width:100%;height:170px;object-fit:contain;background:#F4F8FD;border-radius:8px}
+.card .n{font-weight:800;font-size:15px}
+.card .p{font-size:12px;color:#33415C;line-height:1.6}
+.card .p b{color:#0A2A6B}
+.row{display:flex;gap:8px;align-items:center;margin-top:auto}
+.row input{width:64px;padding:8px;border:1px solid #B9CFEA;border-radius:8px;font:inherit}
+button,.btn{background:#1E6FE0;color:#fff;border:0;border-radius:8px;padding:10px 14px;font:inherit;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
+button.sec{background:#fff;color:#0A2A6B;border:1px solid #0A2A6B}
+.panel{background:#fff;border:1px solid #D6E4F7;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;position:sticky;top:16px;align-self:start}
+.line{display:flex;justify-content:space-between;gap:8px;font-size:13px;border-bottom:1px solid #E3ECF8;padding-bottom:8px}
+.line .q{display:flex;gap:6px;align-items:center}
+.line .q button{padding:2px 8px}
+.total{font-weight:800;font-size:17px;display:flex;justify-content:space-between}
+.warn{font-size:12px;color:#B45309}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form .full{grid-column:1/-1}
+.form label{font-size:12px;font-weight:700;display:flex;flex-direction:column;gap:4px}
+.form input,.form textarea{padding:9px;border:1px solid #B9CFEA;border-radius:8px;font:inherit;font-size:14px}
+.msg{font-size:12px;color:#33415C}
+.hide{display:none}
+@media (max-width:860px){main{grid-template-columns:1fr}.panel{position:static}}
+</style>
+</head>
+<body>
+<header style="background:#fff;border-top:6px solid #0A2A6B;border-bottom:none;padding:28px 24px 0;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
+  <img src="img/logo.png" alt="Masita Market" style="width:260px;height:auto;object-fit:contain">
+  <div style="font-size:30px;font-weight:800">Productos para revender online</div>
+  <div style="font-size:15px;color:#33415C;max-width:760px;line-height:1.6">Precio por unidad y precios mayoristas según la cantidad que compres. Ideal para emprendedores y vendedores online.</div>
+  <div style="font-size:14px;font-weight:700">WhatsApp: 1178880281 · Instagram: @nacho_massari · ignaciomassari1000@gmail.com</div>
+</header>
+<div style="background:#fff;display:flex;justify-content:center;padding:8px 0"><img src="img/fundador.jpg" alt="Masita Market" style="height:620px;width:auto;max-width:100%;object-fit:contain;display:block"></div>
+<section style="background:#fff;max-width:1180px;margin:0 auto;padding:32px 24px 0">
+  <h2 style="text-align:center;font-size:26px">¿Por qué elegirnos?</h2>
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+    <div style="border:1px solid #D6E4F7;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px;background:#fff"><div style="font-size:16px;font-weight:800">Stock permanente</div><div style="font-size:14px;color:#33415C;line-height:1.5">Tenemos mercadería lista para despachar, sin esperas.</div></div>
+    <div style="border:1px solid #D6E4F7;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px;background:#fff"><div style="font-size:16px;font-weight:800">Envíos a todo el país</div><div style="font-size:14px;color:#33415C;line-height:1.5">Enviamos por transporte de cargas a cualquier punto del país.</div></div>
+    <div style="border:1px solid #D6E4F7;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px;background:#fff"><div style="font-size:16px;font-weight:800">Precios mayoristas</div><div style="font-size:14px;color:#33415C;line-height:1.5">Precios competitivos por cantidad para entrar a cualquier mercado.</div></div>
+    <div style="border:1px solid #D6E4F7;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px;background:#fff"><div style="font-size:16px;font-weight:800">Ideal para e-commerce</div><div style="font-size:14px;color:#33415C;line-height:1.5">Productos para sumar a tu tienda online y empezar a vender.</div></div>
+  </div>
+</section>
+
+<main>
+  <section>
+    <h2>Productos</h2>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <aside class="panel">
+    <h2 style="margin:0">Tu pedido</h2>
+    <div id="cartLines" class="msg">Todavía no agregaste productos.</div>
+    <div class="total"><span>Total productos</span><span id="total">$0</span></div>
+    <div class="warn" id="bigWarn"></div>
+    <div class="msg">El envío se coordina después de confirmar el pedido.</div>
+
+    <h2 style="margin:8px 0 0">Datos de envío</h2>
+    <div class="form">
+      <label class="full">Nombre y apellido<input id="f_nombre" autocomplete="name"></label>
+      <label>Teléfono<input id="f_tel" autocomplete="tel"></label>
+      <label>Email (opcional)<input id="f_mail" autocomplete="email"></label>
+      <label class="full">Calle y número<input id="f_calle" autocomplete="address-line1"></label>
+      <label>Piso / depto<input id="f_piso"></label>
+      <label>Localidad<input id="f_loc" autocomplete="address-level2"></label>
+      <label>Provincia<input id="f_prov" autocomplete="address-level1"></label>
+      <label>Código postal<input id="f_cp" autocomplete="postal-code"></label>
+      <label class="full">Aclaraciones (opcional)<textarea id="f_nota" rows="2"></textarea></label>
+    </div>
+    <div class="msg" id="formMsg"></div>
+    <a id="waBtn" class="btn" href="#" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a>
+    <button class="sec" id="copyBtn" type="button">Copiar pedido</button>
+    <div class="msg" id="copyMsg"></div>
+  </aside>
+</main>
+
+<script>
+var WA = "5491178880281";
+var P = [
+  { id: "hose-azul", n: "Manguera Magic Hose 30 m (azul)", img: "img/hose-azul.png", u: "unidad", t: [[1,16500],[10,15500],[30,14500],[50,13500]], d: "Expandible 3X, 30 m / 100 ft, con pistola multifunción." },
+  { id: "hose-verde", n: "Manguera Magic Hose 30 m (verde)", img: "img/hose-verde.png", u: "unidad", t: [[1,16500],[10,15500],[30,14500],[50,13500]], d: "Expandible 3X, 30 m / 100 ft, con pistola multifunción." },
+  { id: "secador", n: "Secador eléctrico de zapatillas", img: "img/secador.png", u: "unidad", t: [[1,17000],[10,16000],[30,15000],[50,14000],[60,13000]], d: "Dos tubos que giran 360°, temporizador de 30 a 120 min." },
+  { id: "taza", n: "Taza mezcladora automática USB", img: "img/taza.png", u: "unidad", t: [[1,14000],[10,12500],[30,11500],[50,10500]], d: "Se mezcla sola. Acero inoxidable, tapa y recarga USB." },
+  { id: "tensiometro", n: "Tensiómetro digital de brazo", img: "img/tensiometro.png", u: "unidad", t: [[1,16000],[5,13000],[10,12000],[50,10000]], d: "Pantalla LCD, función de voz, incluye brazalete." },
+  { id: "wax", n: "Calentador de cera Pro Wax 100", img: "img/wax.png", u: "unidad", t: [[1,19500],[10,16500],[30,15000]], d: "Temperatura regulable, recipiente de aluminio y tapa." },
+  { id: "antivibracion", n: "Almohadillas antivibración (pack x 4)", img: "img/antivibracion.png", u: "pack", t: [[1,5000],[10,3500],[30,3000],[50,2800]], d: "Reducen ruido y vibración del lavarropas." },
+  { id: "ventilador", n: "Ventilador de cuello portátil", img: "img/ventilador.png", u: "unidad", t: [[1,13500],[10,12500],[30,11500],[50,11000]], d: "Sin aspas, portátil, con las manos libres." },
+  { id: "filtro", n: "Filtro rejilla adhesivo (pack x 10)", img: "img/filtro.png", u: "pack", t: [[1,4500],[10,3500],[30,3000],[50,2800]], d: "Retiene cabellos y residuos en desagües." }
+];
+var cart = {};
+try { cart = JSON.parse(localStorage.getItem("mm_cart") || "{}") || {}; } catch (e) { cart = {}; }
+function save() { try { localStorage.setItem("mm_cart", JSON.stringify(cart)); } catch (e) {} }
+function fmt(n) { return "$" + n.toLocaleString("es-AR"); }
+function price(p, q) { var pr = p.t[0][1]; p.t.forEach(function (x) { if (q >= x[0]) pr = x[1]; }); return pr; }
+function byId(id) { for (var i = 0; i < P.length; i++) if (P[i].id === id) return P[i]; return null; }
+
+function renderGrid() {
+  var g = document.getElementById("grid");
+  g.innerHTML = "";
+  P.forEach(function (p) {
+    var c = document.createElement("div"); c.className = "card";
+    var img = document.createElement("img"); img.src = p.img; img.alt = p.n;
+    var n = document.createElement("div"); n.className = "n"; n.textContent = p.n;
+    var d = document.createElement("div"); d.className = "p"; d.textContent = p.d;
+    var tiers = document.createElement("div"); tiers.className = "p";
+    tiers.innerHTML = "<b>1 " + p.u + ":</b> " + fmt(p.t[0][1]) + "<br>" + p.t.slice(1).map(function (x) { return x[0] + " " + p.u + "s: " + fmt(x[1]); }).join(" · ") + "<br>Más de 50: consultar precio";
+    var row = document.createElement("div"); row.className = "row";
+    var inp = document.createElement("input"); inp.type = "number"; inp.min = "1"; inp.value = "1"; inp.setAttribute("aria-label", "Cantidad");
+    var b = document.createElement("button"); b.type = "button"; b.textContent = "Agregar";
+    b.onclick = function () {
+      var q = parseInt(inp.value, 10); if (!q || q < 1) q = 1;
+      cart[p.id] = (cart[p.id] || 0) + q; save(); refresh();
+    };
+    row.appendChild(inp); row.appendChild(b);
+    c.appendChild(img); c.appendChild(n); c.appendChild(d); c.appendChild(tiers); c.appendChild(row);
+    g.appendChild(c);
+  });
+}
+
+function cartItems() {
+  return Object.keys(cart).filter(function (k) { return cart[k] > 0 && byId(k); }).map(function (k) {
+    var p = byId(k), q = cart[k];
+    return { p: p, q: q, pu: price(p, q), sub: price(p, q) * q, big: q > 50 };
+  });
+}
+
+function renderCart() {
+  var box = document.getElementById("cartLines");
+  var items = cartItems();
+  box.innerHTML = "";
+  if (!items.length) { box.textContent = "Todavía no agregaste productos."; }
+  items.forEach(function (it) {
+    var l = document.createElement("div"); l.className = "line";
+    var name = document.createElement("span"); name.textContent = it.p.n + " — " + fmt(it.pu) + " c/u";
+    var q = document.createElement("span"); q.className = "q";
+    var minus = document.createElement("button"); minus.type = "button"; minus.className = "sec"; minus.textContent = "−";
+    var num = document.createElement("span"); num.textContent = it.q;
+    var plus = document.createElement("button"); plus.type = "button"; plus.className = "sec"; plus.textContent = "+";
+    var del = document.createElement("button"); del.type = "button"; del.className = "sec"; del.textContent = "×";
+    minus.onclick = function () { cart[it.p.id] = it.q - 1; if (cart[it.p.id] <= 0) delete cart[it.p.id]; save(); refresh(); };
+    plus.onclick = function () { cart[it.p.id] = it.q + 1; save(); refresh(); };
+    del.onclick = function () { delete cart[it.p.id]; save(); refresh(); };
+    q.appendChild(minus); q.appendChild(num); q.appendChild(plus); q.appendChild(del);
+    l.appendChild(name); l.appendChild(q);
+    box.appendChild(l);
+  });
+  var total = items.reduce(function (s, it) { return s + it.sub; }, 0);
+  document.getElementById("total").textContent = fmt(total);
+  var big = items.some(function (it) { return it.big; });
+  document.getElementById("bigWarn").textContent = big ? "Algún producto supera las 50 unidades: el total se confirma por WhatsApp." : "";
+}
+
+function field(id) { return document.getElementById(id).value.trim(); }
+
+function buildMessage() {
+  var items = cartItems();
+  var lines = ["Hola! Quiero hacer este pedido en Masita Market:", ""];
+  items.forEach(function (it) {
+    lines.push(it.q + " x " + it.p.n + " (" + fmt(it.pu) + " c/u) = " + fmt(it.sub) + (it.big ? " [consultar precio]" : ""));
+  });
+  var total = items.reduce(function (s, it) { return s + it.sub; }, 0);
+  lines.push("", "Total productos: " + fmt(total) + " (envío a coordinar)", "", "Datos de envío:",
+    "Nombre: " + field("f_nombre"), "Teléfono: " + field("f_tel"));
+  if (field("f_mail")) lines.push("Email: " + field("f_mail"));
+  lines.push("Dirección: " + field("f_calle"));
+  if (field("f_piso")) lines.push("Piso/Depto: " + field("f_piso"));
+  lines.push("Localidad: " + field("f_loc"), "Provincia: " + field("f_prov"), "Código postal: " + field("f_cp"));
+  if (field("f_nota")) lines.push("Aclaraciones: " + field("f_nota"));
+  return lines.join("\n");
+}
+
+function missing() {
+  var need = [["f_nombre","nombre"],["f_tel","teléfono"],["f_calle","calle y número"],["f_loc","localidad"],["f_prov","provincia"],["f_cp","código postal"]];
+  var m = need.filter(function (x) { return !field(x[0]); }).map(function (x) { return x[1]; });
+  if (!cartItems().length) m.unshift("productos en el pedido");
+  return m;
+}
+
+function refresh() {
+  renderCart();
+  var m = missing();
+  var wa = document.getElementById("waBtn");
+  var msg = document.getElementById("formMsg");
+  if (m.length) {
+    wa.removeAttribute("href"); wa.style.opacity = "0.5";
+    msg.textContent = "Falta completar: " + m.join(", ") + ".";
+  } else {
+    wa.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(buildMessage());
+    wa.style.opacity = "1";
+    msg.textContent = "Listo. Revisá los datos y enviá el pedido.";
+  }
+}
+
+document.querySelectorAll(".form input, .form textarea").forEach(function (el) { el.addEventListener("input", refresh); });
+
+document.getElementById("copyBtn").onclick = function () {
+  var text = buildMessage();
+  var out = document.getElementById("copyMsg");
+  try {
+    navigator.clipboard.writeText(text).then(function () { out.textContent = "Pedido copiado."; }, function () { out.textContent = "No se pudo copiar. Seleccioná el texto manualmente."; });
+  } catch (e) { out.textContent = "No se pudo copiar en este navegador."; }
+};
+
+renderGrid();
+refresh();
+</script>
+</body>
+</html>

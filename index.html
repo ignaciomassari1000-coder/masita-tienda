@@ -38,6 +38,10 @@ button.sec{background:#fff;color:#0A2A6B;border:1px solid #0A2A6B}
 .tiers{display:flex;flex-direction:column;gap:5px}
 .tier{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
 .tier .pr{font-weight:800}
+.tier span{white-space:nowrap}
+.thead{font-size:12px;font-weight:700;color:#33415C}
+.form label{min-width:0}
+.form input,.form select,.form textarea{width:100%;min-width:0}
 .t0{background:#E3EEFD;color:#0A2A6B}
 .t1{background:#DCFCE7;color:#166534}
 .t2{background:#FEF3C7;color:#92400E}
@@ -149,10 +153,12 @@ function renderGrid() {
     var n = document.createElement("div"); n.className = "n"; n.textContent = p.n;
     var d = document.createElement("div"); d.className = "p"; d.textContent = p.d;
     var tiers = document.createElement("div"); tiers.className = "tiers";
+    var th = document.createElement("div"); th.className = "thead"; th.textContent = "Precio por " + p.u + " según cantidad:";
+    tiers.appendChild(th);
     p.t.forEach(function (x, i) {
       var r = document.createElement("div"); r.className = "tier t" + i;
       var a = document.createElement("span"); a.textContent = x[0] === 1 ? "1 " + p.u : "Desde " + x[0] + " " + p.u + (p.u === "unidad" ? "es" : "s");
-      var v = document.createElement("span"); v.className = "pr"; v.textContent = fmt(x[1]) + " c/u";
+      var v = document.createElement("span"); v.className = "pr"; v.textContent = fmt(x[1]);
       r.appendChild(a); r.appendChild(v); tiers.appendChild(r);
     });
     var note = document.createElement("div"); note.className = "tnote"; note.textContent = "Más de 50: consultar precio";
